@@ -1,9 +1,8 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import Modal from "./Modal";
