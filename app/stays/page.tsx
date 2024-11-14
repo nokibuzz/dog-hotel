@@ -17,7 +17,7 @@ const StaysPage = async () => {
   }
 
   const reservations = await getReservations({
-    // @ts-ignore
+    // @ts-expect-error: stgs
     userId: currentUser.id,
   });
 
