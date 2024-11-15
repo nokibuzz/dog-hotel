@@ -47,6 +47,7 @@ const useFavorite = ({
             router.refresh();
             toast.success(toastMessage);
         } catch(error) {
+            console.error(error);
             toast.error("Something went wrong on favoriting!");
         }
     }, [currentUser, hasFavorited, listingId, loginModal, router]);

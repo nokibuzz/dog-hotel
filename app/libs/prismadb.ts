@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 declare global {
-    var prisma: PrismaClient | undefined
+    let prisma: PrismaClient | undefined
 }
 
 // assigning this prisma client to work on local env, not to cause hot reload issues with next.js

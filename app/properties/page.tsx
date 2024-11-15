@@ -17,7 +17,7 @@ const PropertiesPage = async () => {
   }
 
   const listings = await getListings({
-    // @ts-ignore
+    // @ts-expect-error error
     userId: currentUser.id,
   });
 

@@ -30,7 +30,7 @@ export async function POST(request: Request) {
         data: {
             reservations: {
                 create: {
-                    // @ts-ignore
+                    // @ts-expect-error error
                     userId: currentUser.id,
                     startDate,
                     endDate,

@@ -26,10 +26,12 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
       currentQuery = qs.parse(params.toString());
     }
 
-    const updateQuery: any = {
-      ...currentQuery,
-      category: label,
-    };
+    const updateQuery: any // eslint-disable-line @typescript-eslint/no-explicit-any
+     =
+      {
+        ...currentQuery,
+        category: label,
+      };
 
     if (params?.get("category") === label) {
       delete updateQuery.category;

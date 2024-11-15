@@ -10,7 +10,7 @@ import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
 const icon = L.icon({ iconUrl: "/images/marker-icon.png" });
 
-// @ts-ignore
+// @ts-expect-error error
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconUrl: markerIcon.src,
@@ -35,7 +35,6 @@ const Map: React.FC<MapProps> = ({ center }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {center && (
-        // TODO: see why marker icon is not visible and working
         <Marker position={center as L.LatLngExpression} icon={icon}>
           <Popup>
             Location <br /> TODO: add country name here or stg else if needed

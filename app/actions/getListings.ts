@@ -13,7 +13,7 @@ export default async function getListings(params: ILIstingParams) {
     try {
         const {userId, guestCount, startDate, endDate, locationValue, category} = await params;
 
-        let query: any = {};
+        const query: any = {}; // eslint-disable-line @typescript-eslint/no-explicit-any
 
         if (userId) {
             query.userId = userId;
@@ -63,7 +63,7 @@ export default async function getListings(params: ILIstingParams) {
         }));
         
         return safeListings;
-    } catch (error: any) {
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         throw new Error(error);
     }
 }

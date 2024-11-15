@@ -57,17 +57,19 @@ const SearchModal = () => {
       currentQuery = qs.parse(params.toString());
     }
 
-    const updatedQuery: any = {
+    const updatedQuery = {
       ...currentQuery,
       locationValue: location?.value,
       guestCount,
     };
 
     if (dateRange.startDate) {
+      // @ts-expect-error error
       updatedQuery.startDate = formatISO(dateRange.startDate);
     }
 
     if (dateRange.endDate) {
+      // @ts-expect-error error
       updatedQuery.endDate = formatISO(dateRange.endDate);
     }
 

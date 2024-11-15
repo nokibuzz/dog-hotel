@@ -40,7 +40,7 @@ const Search = () => {
     }
 
     return "Date";
-  }, [getByValue, startDate, endDate]);
+  }, [startDate, endDate]);
 
   const guestLabel = useMemo(() => {
     if (guestCount) {
@@ -48,7 +48,7 @@ const Search = () => {
     }
 
     return "Add pets";
-  }, [getByValue, guestCount]);
+  }, [guestCount]);
 
   return (
     <div
