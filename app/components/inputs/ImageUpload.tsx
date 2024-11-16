@@ -2,8 +2,9 @@
 
 import { CldUploadWidget } from "next-cloudinary";
 import Image from "next/image";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { TbPhotoPlus } from "react-icons/tb";
+import toast from "react-hot-toast";
 
 declare global {
   let cloudinary: any; // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -15,20 +16,41 @@ interface ImageUploadProps {
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
+  const [isValid, setIsValid] = useState(true);
+
   const handleUpload = useCallback(
     (
       result: any // eslint-disable-line @typescript-eslint/no-explicit-any
     ) => {
-      onChange(result.info.secure_url);
+      if (isValid) {
+        onChange(result.info.secure_url);
+      }
     },
     [onChange]
   );
+
+  const handleValidation = (event) => {
+
+    if (!event || !event.info || !event.info.file) {
+      setIsValid(false);
+      toast.error("Image is not present!");
+    }
+
+    if (!event.info.file.type || !event.info.file.type.match('image/jpeg') && !event.info.file.type.match('image/png')) {
+      setIsValid(false);
+      toast.error("Image is not in a right format!");
+    }
+
+    setIsValid(true);
+  };
+
 
   return (
     <CldUploadWidget
       onSuccess={handleUpload}
       uploadPreset="oqa81fsw"
       options={{ maxFiles: 1 }}
+      onUploadAddedAction={(file) => handleValidation(file)}
     >
       {({ open }) => {
         return (
