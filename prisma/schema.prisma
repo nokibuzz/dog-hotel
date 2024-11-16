@@ -63,7 +63,7 @@ model Listing {
   price         Int
   reservations  Reservation[]
 
-  User User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Reservation {
@@ -75,8 +75,8 @@ model Reservation {
   totalPrice Int
   createdAt  DateTime @default(now())
 
-  User    User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Listing Listing? @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  user    User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing Listing? @relation(fields: [listingId], references: [id], onDelete: Cascade)
 }
 
 // username:dogohotel
