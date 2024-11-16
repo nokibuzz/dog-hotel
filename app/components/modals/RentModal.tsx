@@ -89,6 +89,12 @@ const RentModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    if (step == STEPS.IMAGES) {
+      if (!data.imageSrc) {
+        return;
+      }
+    }
+
     if (step !== STEPS.PRICE) {
       return onNext();
     }
