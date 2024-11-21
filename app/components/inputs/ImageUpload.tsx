@@ -30,20 +30,22 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
   );
 
   const handleValidation = (event) => {
-
     if (!event || !event.info || !event.info.file) {
       setIsValid(false);
       toast.error("Image is not present!");
     }
 
-    if (!event.info.file.type || !event.info.file.type.match('image/jpeg') && !event.info.file.type.match('image/png')) {
+    if (
+      !event.info.file.type ||
+      (!event.info.file.type.match("image/jpeg") &&
+        !event.info.file.type.match("image/png"))
+    ) {
       setIsValid(false);
       toast.error("Image is not in a right format!");
     }
 
     setIsValid(true);
   };
-
 
   return (
     <CldUploadWidget

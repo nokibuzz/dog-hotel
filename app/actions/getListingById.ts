@@ -24,11 +24,11 @@ export default async function getListingById(params: IParams) {
         return {
             ...listing,
             createdAt: listing.createdAt.toISOString(),
-            User: {
-                ...listing.User,
-                createdAt: listing?.User?.createdAt.toISOString() || null,
-                updatedAt: listing?.User?.updatedAt.toISOString(),
-                emailVerified: listing?.User?.emailVerified?.toISOString() || null,
+            user: {
+                ...listing.user,
+                createdAt: listing?.user?.createdAt.toISOString() || null,
+                updatedAt: listing?.user?.updatedAt.toISOString(),
+                emailVerified: listing?.user?.emailVerified?.toISOString() || null,
             }
         }
     } catch(error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
