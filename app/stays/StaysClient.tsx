@@ -44,7 +44,7 @@ const StaysClient: React.FC<StaysClientProps> = ({
         {reservations.map((reservation) => (
           <ListingCard
             key={reservation.id}
-            data={reservation.Listing}
+            data={reservation.listing}
             reservation={reservation}
             actionId={reservation.id}
             onAction={onCancel}

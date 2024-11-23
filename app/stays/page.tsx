@@ -6,7 +6,7 @@ import getReservations from "../actions/getReservations";
 import StaysClient from "./StaysClient";
 
 const StaysPage = async () => {
-  const currentUser = getCurrentUser();
+  const currentUser = await getCurrentUser();
 
   if (!currentUser) {
     return (
@@ -17,7 +17,6 @@ const StaysPage = async () => {
   }
 
   const reservations = await getReservations({
-    // @ts-expect-error: stgs
     userId: currentUser.id,
   });
 

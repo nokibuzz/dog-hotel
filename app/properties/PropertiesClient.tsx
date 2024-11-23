@@ -22,11 +22,11 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
   const [deletingId, setDeletingId] = useState("");
 
   const onCancel = useCallback(
-    (id: string) => {
-      setDeletingId(id);
+    (listingId: string) => {
+      setDeletingId(listingId);
 
       axios
-        .delete(`/api/listing/${id}`)
+        .delete(`/api/listing/${listingId}`)
         .then(() => {
           toast.success("Successfully deleted property!");
           router.refresh();

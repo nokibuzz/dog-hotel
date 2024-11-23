@@ -6,7 +6,7 @@ import PropertiesClient from "./PropertiesClient";
 import getListings from "../actions/getListings";
 
 const PropertiesPage = async () => {
-  const currentUser = getCurrentUser();
+  const currentUser = await getCurrentUser();
 
   if (!currentUser) {
     return (
@@ -17,7 +17,6 @@ const PropertiesPage = async () => {
   }
 
   const listings = await getListings({
-    // @ts-expect-error error
     userId: currentUser.id,
   });
 
