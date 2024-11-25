@@ -1,6 +1,7 @@
 "use client";
 
 import Container from "@/app/components/Container";
+import ListingAddionalInformation from "@/app/components/listings/ListingAddionalInformation";
 import ListingHead from "@/app/components/listings/ListingHead";
 import ListingInfo from "@/app/components/listings/ListingInfo";
 import ListingReservation from "@/app/components/listings/ListingReservation";
@@ -137,6 +138,12 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 onSubmit={onCreateReservation}
                 disabled={isLoading}
                 disabledDates={disabledDates}
+              />
+              <ListingAddionalInformation 
+                hasFood={listing.hasFood}
+                hasGrooming={listing.hasGrooming}
+                hasVet={listing.hasVet}
+                addionalInformation={listing.addionalInformation}
               />
             </div>
           </div>

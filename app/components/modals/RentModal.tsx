@@ -26,7 +26,8 @@ enum STEPS {
   IMAGES = 3,
   DESCRIPTION = 4,
   HOUSE_RULES = 5,
-  PRICE = 6,
+  ADDIONAL_OPTIONS = 6,
+  PRICE = 7
 }
 
 const RentModal = () => {
@@ -59,7 +60,11 @@ const RentModal = () => {
       hasCancelation: false,
       allowBooking: true,
       paymentMethodsCards: true,
-      paymentMethodsCash: true
+      paymentMethodsCash: true,
+      hasFood: false,
+      hasGrooming: false,
+      hasVet: false,
+      addionalInformation: ""
     },
   });
 
@@ -312,6 +317,51 @@ const RentModal = () => {
             register={register}
             errors={errors}
         />
+        </div>
+      </div>
+    );
+  }
+
+  if (step === STEPS.ADDIONAL_OPTIONS) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Addional options"
+          subtitle="Extra customizable services or amenities for pets, such as grooming, feeding, and extended care, enhancing the overall experience and comfort during stay."
+        />
+        <Toggle
+            id="hasFood"
+            label="Has food option (alergies)"
+            defaultChecked={false}
+            register={register}
+            errors={errors}
+        />
+        <hr />
+        <Toggle
+            id="hasGrooming"
+            label="Has grooming"
+            defaultChecked={false}
+            register={register}
+            errors={errors}
+        />
+        <hr />
+        <Toggle
+            id="hasVet"
+            label="Has veterinarian"
+            defaultChecked={false}
+            register={register}
+            errors={errors}
+        />
+        <hr />
+        <div className="flex flex-row gap-4">
+          <TextArea
+            id="addionalInformation"
+            label="Addional information"
+            defaultNumberOfRows={2}
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+          />
         </div>
       </div>
     );

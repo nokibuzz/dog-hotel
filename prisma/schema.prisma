@@ -67,6 +67,10 @@ model Listing {
   allowBooking Boolean
   paymentMethodsCards Boolean
   paymentMethodsCash Boolean
+  hasFood Boolean
+  hasGrooming Boolean
+  hasVet Boolean
+  addionalInformation String?
   reservations  Reservation[]
 
   user User? @relation(fields: [userId], references: [id], onDelete: Cascade)

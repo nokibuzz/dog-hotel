@@ -25,7 +25,11 @@ export async function POST(request: Request) {
         hasCancelation,
         allowBooking,
         paymentMethodsCards,
-        paymentMethodsCash
+        paymentMethodsCash,
+        hasFood,
+        hasGrooming,
+        hasVet,
+        addionalInformation
     } = body;
 
     const listing = await prisma.listing.create({
@@ -44,7 +48,11 @@ export async function POST(request: Request) {
             hasCancelation,
             allowBooking,
             paymentMethodsCards,
-            paymentMethodsCash
+            paymentMethodsCash,
+            hasFood,
+            hasGrooming,
+            hasVet,
+            addionalInformation
         }
     });
 
