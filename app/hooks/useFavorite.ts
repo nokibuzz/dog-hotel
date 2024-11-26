@@ -36,10 +36,10 @@ const useFavorite = ({
             let toastMessage = '';
 
             if (hasFavorited) {
-                request = () => axios.delete(`/api/favorites/${listingId}`);
+                request = () => axios.delete(`/api/favorites?listingId=${listingId}`);
                 toastMessage = "Removed from favorites!";
             } else {
-                request = () => axios.post(`/api/favorites/${listingId}`);
+                request = () => axios.post('/api/favorites', {listingId: `${listingId}`});
                 toastMessage = "Added to favorites!";
             }
 

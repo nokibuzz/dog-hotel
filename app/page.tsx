@@ -6,11 +6,10 @@ import EmptyState from "./components/EmptyState";
 import ListingCard from "./components/listings/ListingCard";
 import { SafeListing } from "./types";
 
-interface HomeProps {
-  searchParams: ILIstingParams;
-}
+type HomeProps = Promise<{ searchParams: ILIstingParams }>;
 
-const Home = async ({ searchParams }: HomeProps) => {
+const Home = async ({ params }: { params: HomeProps }) => {
+  const { searchParams } = await params;
   const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 

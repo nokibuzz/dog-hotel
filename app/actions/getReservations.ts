@@ -1,12 +1,12 @@
-import prisma from "@/app/libs/prismadb";
+import {prisma} from "@/app/libs/prismadb";
+import { Reservation } from "@prisma/client";
+import { SafeReservation } from "../types";
 
-interface IParams {
-    listingId?: string;
-    userId?: string;
-    authorId?: string;
-}
+// type IParams = Promise<{listingId?: string; userId?: string; authorId?: string}>;
+type IParams = { listingId?: string; userId?: string; authorId?: string };
 
-export default async function getReservations(params: IParams) {
+
+export default async function getReservations(params: IParams): Promise<SafeReservation[]> {
     try {
         const {listingId, userId, authorId} = await params;
 
@@ -34,13 +34,15 @@ export default async function getReservations(params: IParams) {
             }
         });
 
-        const safeReservations = reservations.map((reservation) => ({
+        const safeReservations = reservations.map((reservation: Reservation) => ({
             ...reservation,
             createdAt: reservation.createdAt.toISOString(),
             startDate: reservation.startDate.toISOString(),
             endDate: reservation.endDate.toISOString(),
             listing: {
+                // @ts-expect-error asd
                 ...reservation.listing,
+                // @ts-expect-error asd
                 createdAt: reservation?.listing?.createdAt.toISOString()
             }
         }));

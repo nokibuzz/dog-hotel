@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import prisma from "@/app/libs/prismadb";
+import {prisma} from "@/app/libs/prismadb";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 
 export async function POST(request: Request) {
@@ -32,6 +32,30 @@ export async function POST(request: Request) {
             guestCount, 
             locationValue: location.value, 
             price: parseInt(price, 10),
+            userId: currentUser.id
+        }
+    });
+
+    return NextResponse.json(listing);
+}
+
+export async function DELETE(request: Request) {
+    const currentUser = await getCurrentUser();
+
+    if (!currentUser) {
+        return NextResponse.error();
+    }
+
+    const body = await request.json();
+    const {listingId } = body;
+
+    if (!listingId || typeof listingId !== 'string') {
+        throw new Error("Invalid property ID");
+    }
+
+    const listing = await prisma.listing.deleteMany({
+        where: {
+            id: listingId,
             userId: currentUser.id
         }
     });

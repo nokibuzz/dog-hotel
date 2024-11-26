@@ -36,11 +36,21 @@ const RegisterModal = () => {
       .post("/api/register", data)
       .then(() => {
         toast.success("Successfully registered!");
+        saveAccount(data);
         registerModal.onClose();
         loginModal.onOpen();
       })
       .catch(() => toast.error("Woof, woof, something went wrong!"))
       .finally(() => setIsLoading(false));
+  };
+
+  const saveAccount = (data: FieldValues) => {
+    axios
+      .post("/api/user", data)
+      .then(() => {
+        console.log("Saved account data!");
+      })
+      .catch(() => toast.error("Woof, woof, error on saving account data!"));
   };
 
   const bodyContent = (
