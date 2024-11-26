@@ -64,7 +64,7 @@ const ProfileClient: React.FC<ProfileClientProps> = ({ currentUser }) => {
         </div>
 
         <div className="flex-1 p-6">
-          <TabContent activeTab={activeTab} />
+          <TabContent activeTab={activeTab} currentUser={currentUser} />
         </div>
       </div>
     </Container>

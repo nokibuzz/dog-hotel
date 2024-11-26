@@ -5,17 +5,19 @@ import ProfileCard from "./profile/ProfileCard";
 import AccountCard from "./profile/AccountCard";
 import BillCard from "./profile/BillCard";
 import { ProfileTabs } from "../types/ProfileTabs";
+import { SafeUser } from "../types";
 
 interface TabContentProps {
   activeTab: ProfileTabs;
+  currentUser: SafeUser | null;
 }
 
-const TabContent: React.FC<TabContentProps> = ({ activeTab }) => {
+const TabContent: React.FC<TabContentProps> = ({ activeTab, currentUser }) => {
   switch (activeTab) {
     case ProfileTabs.ACCOUNTS:
       return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 m-5">
-          <ProfileCard />
+          <ProfileCard currentUser={currentUser} />
           <div className="grid grid-cols-1 gap-6">
             <AccountCard />
             <BillCard />

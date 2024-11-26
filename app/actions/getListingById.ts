@@ -1,8 +1,6 @@
-import prisma from "@/app/libs/prismadb";
+import {prisma} from "@/app/libs/prismadb";
 
-interface IParams {
-    listingId?: string;
-}
+type IParams = Promise<{listingId: string}>;
 
 export default async function getListingById(params: IParams) {
     try {
@@ -26,6 +24,7 @@ export default async function getListingById(params: IParams) {
             createdAt: listing.createdAt.toISOString(),
             user: {
                 ...listing.user,
+                id: listing?.user?.id || "",
                 createdAt: listing?.user?.createdAt.toISOString() || null,
                 updatedAt: listing?.user?.updatedAt.toISOString(),
                 emailVerified: listing?.user?.emailVerified?.toISOString() || null,
